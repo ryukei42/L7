@@ -1,0 +1,9 @@
+<%= link_to '戻る', products_path %>
+<%= form_for @p, url: {action: :create} do |pd| %>
+    <%= pd.label :name, '商品名'%>
+    <%= pd.text_field :name %>
+    <br>
+    <%= pd.label :price, '値段' %>
+    <%= pd.number_field :price, min: "0", value: "0"%>
+    <%= pd.submit '登録' %>
+<% end %>

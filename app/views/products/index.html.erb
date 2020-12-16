@@ -1,0 +1,11 @@
+<!-- カートに追加 -->
+
+<%= link_to '商品を追加する', new_product_path %>
+<%= link_to '戻る', top_main_path %>
+<hr />
+<% @pdts.each do |p| %>
+    <%= p.name%> <%= p.price %>円
+    <br />
+    <%= link_to '削除', product_path(p.id), method: :delete %>
+    <br />
+<% end %>

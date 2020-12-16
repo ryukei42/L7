@@ -1,0 +1,44 @@
+<h1>ショッピング</h1>
+
+<div>
+    <%= link_to '管理', products_path %>
+</div>
+
+<div>
+    <%= link_to 'カート',carts_path %>
+</div>
+
+<div>
+    <% @products.each do |p| %>
+        <% pid = p.id %>
+        <div class="cart">
+            <%= form_for @item, url: {controller: 'cart_items', action: :create} do |c| %>
+                <div class="name">
+                    <%= p.name %>
+                </div>
+                <div class="price">
+                    <%= p.price %>円
+                </div>
+                <div class="form">
+                    <%= c.hidden_field :product_id, value: pid %>
+                    <%= c.label :qty, '数量' %>
+                    <%= c.number_field :qty, min: "0", value: "0" %>
+                    <%= c.submit 'カートに入れる' %>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+<!--
+キャベツ¥100
+
+にんじん　¥100
+
+トマト　¥100
+
+じゃがいも　¥100
+
+なす　¥100
+
+きゅうり　¥100

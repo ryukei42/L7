@@ -1,0 +1,28 @@
+<%= link_to '戻る', top_main_path %>
+<hr />
+<% psum = 0 %>
+<% @cart_items.each do |item| %>
+    <% product = Product.find_by(id: item.product_id) %>
+    <% if product.nil? then %>
+        <% next %>
+    <% end %>
+    <div>
+        <div>
+            <%= product.name%>
+            <%= product.price %>円
+        </div>
+        <div>
+            個数: <%= item.qty %>
+        </div>
+        <div>
+            計 <%= item.qty * product.price %>円
+        </div>
+        <div class="link">
+            <%= link_to '削除', cart_item_path(item.id), method: :delete %>
+        </div>
+    </div>
+    <br />
+    <% psum = psum + item.qty * product.price %>
+<% end %>
+<hr />
+合計 <%= psum %>円
